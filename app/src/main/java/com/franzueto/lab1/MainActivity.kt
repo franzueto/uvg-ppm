@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.commit
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,19 +14,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val button = findViewById<Button>(R.id.button)
+        if (savedInstanceState == null) {
+            val fragment = MainFragment()
 
-        button.setOnClickListener {
-            val editText = findViewById<EditText>(R.id.editTextTextPersonName)
-            val message = editText.text.toString()
-            val intent = Intent(this, DisplayMessageActivity::class.java).apply {
-                putExtra(DisplayMessageActivity.MESSAGE_KEY, message)
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(R.id.fragment_container_view, fragment)
             }
-            startActivity(intent)
         }
-    }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
+//        val button = findViewById<Button>(R.id.button)
+//
+//        button.setOnClickListener {
+//            val editText = findViewById<EditText>(R.id.editTextTextPersonName)
+//            val message = editText.text.toString()
+//            val intent = Intent(this, DisplayMessageActivity::class.java).apply {
+//                putExtra(DisplayMessageActivity.MESSAGE_KEY, message)
+//            }
+//            startActivity(intent)
+//        }
     }
 }
