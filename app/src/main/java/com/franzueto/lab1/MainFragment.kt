@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -19,28 +20,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val editText = view.findViewById<EditText>(R.id.editTextTextPersonName)
             val message = editText.text.toString()
 
-            val title = "Compartir"
-
-            val intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(DisplayMessageActivity.KEY_EXTRA_TEXT, message)
-                type = "text/plain"
-            }
-
-            val chooser: Intent = Intent.createChooser(intent, title)
-            if (intent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivity(chooser)
-            }
-
-//            try {
-//                startActivity(intent)
-//            } catch (e: ActivityNotFoundException) {
-//                e.printStackTrace()
-//            }
+            findNavController().navigate(R.id.action_mainFragment_to_displayMessageFragment)
         }
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
     }
 }
