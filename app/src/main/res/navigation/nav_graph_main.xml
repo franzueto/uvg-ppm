@@ -15,5 +15,10 @@
     <fragment
         android:id="@+id/displayMessageFragment"
         android:name="com.franzueto.lab1.DisplayMessageFragment"
-        android:label="DisplayMessageFragment" />
+        android:label="DisplayMessageFragment" >
+        <argument
+            android:name="message"
+            app:argType="string" />
+
+    </fragment>
 </navigation>

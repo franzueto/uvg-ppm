@@ -20,7 +20,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val editText = view.findViewById<EditText>(R.id.editTextTextPersonName)
             val message = editText.text.toString()
 
-            findNavController().navigate(R.id.action_mainFragment_to_displayMessageFragment)
+            val action = MainFragmentDirections.actionMainFragmentToDisplayMessageFragment(message)
+
+            findNavController().navigate(action)
         }
     }
 }
