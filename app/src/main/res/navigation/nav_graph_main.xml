@@ -10,7 +10,11 @@
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_displayMessageFragment"
-            app:destination="@id/displayMessageFragment" />
+            app:destination="@id/displayMessageFragment" >
+            <argument
+                android:name="message"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/displayMessageFragment"
@@ -18,6 +22,7 @@
         android:label="DisplayMessageFragment" >
         <argument
             android:name="message"
+            android:defaultValue="No Value passed"
             app:argType="string" />
 
     </fragment>
